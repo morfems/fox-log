@@ -6,10 +6,25 @@
         "moduleResolution": "node",
         "sourceMap": true,
         "outDir": "dist",
-        "types": ["node"],
+        "types": [
+            "node",
+            "jest"
+        ],
+        "typeRoots": [
+            "types",
+            "./node_modules/@types"
+        ],
+        "baseUrl": "types",
         "alwaysStrict": true
     },
     "lib": [
         "es2015"
+    ],
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
     ]
 }
