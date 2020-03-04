@@ -4,6 +4,7 @@
   "description": "A program that monitors HTTP traffic",
   "scripts": {
     "generate": "npx ts-node src/generator",
+    "start": "npx ts-node src/app.ts",
     "test": "npx jest",
     "postinstall": "node-config-ts"
   },
@@ -20,9 +21,11 @@
   },
   "dependencies": {
     "@types/filesystem": "0.0.29",
+    "@types/lodash": "^4.14.149",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "node-config-ts": "^3.0.4",
+    "tail": "^2.0.3",
     "ts-log-debug": "^5.4.1"
   }
 }

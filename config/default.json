@@ -1,4 +1,6 @@
 {
     "logFilePath": "../log/access.log",
-    "level": "info"
+    "level": "info",
+    "threshold": 10,
+    "numberOfMostVisitedSites": 3
 }
