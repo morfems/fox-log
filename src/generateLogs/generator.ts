@@ -6,42 +6,42 @@ import { Logger } from "@tsed/logger";
 
 
 export default class Generator {
-    private readonly USER_NAMES: string[] = ['james', 'jill', 'frank', 'mary'];
+    private readonly USER_NAMES: string[] = ['james', 'jill', 'frank', 'mary', 'Mouad'];
     private readonly HTTP_METHODS: string[] = ['GET', 'POST', 'PATCH', 'DELETE'];
-    private readonly SECTIONS: string[] = ['/report', '/api/user', '/api/user', '/api/user'];
+    private readonly SECTIONS: string[] = ['/report', '/api/user', '/api/user', '/report/user', '/tata', '/titi'];
     private readonly SUCCESS_STATUS_CODES: number[] = [200, 201, 202, 203, 204];
     private readonly ERROR_STATUS_CODES: number[] = [500, 501, 502, 503, 504];
     private readonly REQUESTS_PER_SECONDS: number[] = [8, 10, 12];
     private logFilePath: string;
 
     constructor(private config: IConfig, private fs, private dirname: string, private logger: Logger) {
-        this.logFilePath = config.logFilePath;
+        this.logFilePath = this.config.logFilePath;
     }
 
     generateRandomLogLines(): void {
-        setInterval(() => this.generateAndWriteLinesToLogFile(), 1000);
+        setInterval(() => this._generateAndWriteLinesToLogFile(), 1000);
     }
 
-    generateAndWriteLinesToLogFile(): Promise<void> {
+    private _generateAndWriteLinesToLogFile(): void {
         const requestsPerSecond: number = sample(this.REQUESTS_PER_SECONDS);
-        const generatedLines: string = this.getGeneratedLines(requestsPerSecond);
+        const generatedLines: string = this._getGeneratedLines(requestsPerSecond);
 
-        return Promise.resolve()
-            .then(() => this.writeLinesToLogFile(generatedLines))
-            .catch((err) => { this.logger.error(err) });
+        Promise.resolve()
+            .then(() => this._writeLinesToLogFile(generatedLines))
+            .catch((err) => { console.log(err); this.logger.error(err) });
     }
 
-    writeLinesToLogFile(lines: string): Promise<void> {
+    private _writeLinesToLogFile(lines: string): Promise<void> {
         const absoluteFilePath: string = path.resolve(this.dirname, this.logFilePath);
         return this.fs.appendFile(absoluteFilePath, lines, { flag: 'a' });
     }
 
-    getGeneratedLines(nTimes: number): string {
-        return times(nTimes, () => this.getGeneratedLine())
+    private _getGeneratedLines(nTimes: number): string {
+        return times(nTimes, () => this._getGeneratedLine())
             .join('');
     }
 
-    getGeneratedLine(): string {
+    private _getGeneratedLine(): string {
         const userName: string = sample(this.USER_NAMES);
         const dateTime: string = format(new Date()).format('DD/MMM/YYYY:HH:mm:ss')
         const httpMethod: string = sample(this.HTTP_METHODS);

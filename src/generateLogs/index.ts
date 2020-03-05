@@ -5,7 +5,7 @@ import { $log as logger } from "@tsed/logger";
 
 
 logger.level = config.level;
-logger.name = "LOG MONITOR";
+logger.name = "LOG GENERATOR";
 
 const generator = new Generator(config, fs, __dirname, logger);
 generator.generateRandomLogLines();
