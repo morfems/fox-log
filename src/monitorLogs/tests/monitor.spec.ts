@@ -72,7 +72,7 @@ it('should log high traffic warning and then traffic back to normal', () => {
     const data: string = '127.0.0.1 - james [01/Mar/2020:22:17:19 + 0000] "GET /report HTTP/1.0" 200 123';
     const anotherData: string = '127.0.0.1 - james [01/Mar/2020:22:17:19 + 0000] "GET /api HTTP/1.0" 200 123';
     const firstExpectedResult: string = 'High traffic generated an alert - hits = 1';
-    const secondExpectedResult: string = 'Traffic is back to normal 🥳😺';
+    const secondExpectedResult: string = 'Traffic is back to normal - at = 0 🥳😺';
 
     // When
     times(120, () => monitor.storeData(data));

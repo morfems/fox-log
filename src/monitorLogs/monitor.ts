@@ -117,7 +117,7 @@ export default class Generator {
         } else if (this.isTresholdHit === true) {
             this.isTresholdHit = false;
             this.logger.info('***************************************');
-            this.logger.info('Traffic is back to normal 🥳😺');
+            this.logger.info(`Traffic is back to normal - at = ${Math.floor(requestsPerSecond)} 🥳😺`);
             this.logger.info('***************************************');
         }
     }
